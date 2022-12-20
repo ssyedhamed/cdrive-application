@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	th:replace="~{normal/user_base::Layout(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<main>
+
+
+		<div class="contact-modal" th:fragment="Modal(title,form)">
+
+			<div class="contact-modal-content">
+
+				<!--?????/////// dialog/ prompt ////////  -->
+				<div class="my-prompt-back">
+
+					<div class="my-prompt text-center  border open-contact-prompt">
+						<div class="prompt-content mb-2">
+							<h4>Do you want to delete this contact?</h4>
+							<i class=""></i>
+							<span>Once you delete, it cannot be undone. Are you sure?</span>
+						</div>
+						<form class="form" action="/user/put_contact" method="post"
+							enctype="multipart/form-data" th:object="${contact}">
+
+							<input type="text" hidden="hidden" th:value="${contact.id}"
+								name="cid"> <input type="text" hidden="hidden"
+								th:value="${currentPage}" name="currentPage">
+							<div class="mb-3">
+
+								<label for="formFileSm" class="form-label">Select Image</label>
+								<input class="form-control form-control-sm" id="formFileSm"
+									type="file" required="required" name="file">
+							</div>
+							<button type="submit" class="btn btn-outline-success">Save</button>
+							<a href="#"
+								th:href="@{'/user/'+${contact.id}+'/show_contact/'+${currentPage}}"
+								class="btn btn-outline-success">Cancel</a>
+						</form>
+						<div class="prompt-btns text-center">
+							<button class="btn btn-outline-danger ">Yes</button>
+							<a href="#"
+								th:href="@{'/user/'+${contact.id}+'/show_contact/'+${currentPage}}"
+								class="btn btn-outline-success">Cancel</a>
+						</div>
+					</div>
+				</div>
+				<!--?????/////// Delete prompt END ////////  -->
+				<a href="#" th:href="@{'/user/view_contacts/'+${currentPage}}"
+					class="close-contact"><i class="fas fa-close fa-3x"></i></a>
+				<div class="content-header">
+					<h1 th:text="${title}">Contact details</h1>
+					<p style="margin-bottom: -30px;" class="alert alert-danger text-center p-1 " th:if="${message}"
+							 role="alert">
+							<i class="fa-solid fa-triangle-exclamation"></i>
+							<span th:text="${message}"></span>
+							
+							</p>
+				</div>
+
+				<div th:if="${from=='edit'}">
+
+					<div th:replace="${form}"></div>
+				</div>
+
+				<div class="content-body row " th:if="${from=='view'}">
+					
+					<div class="content-body-header mb-2 col">
+						<div class="content-header-image text-center">
+							<img
+								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','image')|"
+								src="" th:src="@{'/images/'+${contact.image}}" alt="image here" />
+
+							<div
+								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','image')|"
+								class="image-hover">
+								<i class="fa fa-camera text-white"></i>
+							</div>
+						</div>
+						
+
+
+						<div class="header-info ">
+							<table class="table contact-table">
+								<tbody>
+									<tr>
+										<th scope="col">Name</th>
+										<td th:text="${contact.name}"><span
+											th:if="${contact.nickName}"
+											th:text="'('+${contact.nickName}+')'"></span></td>
+									</tr>
+									<tr>
+										<th scope="col">Number</th>
+										<td th:text="${contact.phone}"></td>
+									</tr>
+
+
+
+								</tbody>
+
+							</table>
+
+						</div>
+						
+					</div>
+					<hr />
+					<div class="content-info mt-1 col-10 p-2  offset-1">
+						<table class="table second-table">
+							<tbody>
+								<tr>
+									<th scope="col">Email Address</th>
+									<td th:text="${contact.email}"></td>
+								</tr>
+								<tr>
+									<th scope="col">About</th>
+									<td th:text="${contact.description}"></td>
+								</tr>
+								<tr>
+									<th scope="col">Work</th>
+									<td th:text="${contact.work}"></td>
+								</tr>
+
+
+
+							</tbody>
+
+						</table>
+
+					</div>
+					<div class="col-12  text-center  ">
+						<a
+							th:href="@{'/user/'+${contact.id}+'/edit_contact/'+${currentPage}}"
+							class="btn btn-outline-primary">Edit</a>
+						<button class="btn btn-success"
+							th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','delete')|">Delete</button>
+					</div>
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+	</main>
+</body>
+</html>

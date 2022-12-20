@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	th:replace="~{base::Layout(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+<main>
+	<section class="register-container ">
+		<div class="register-card col-md-4 offset-3">
+			<header class="form-header text-center text-white">
+				<h1>User Registration</h1>
+				<div th:if="${session.message}"
+					th:classappend="${session.message.type}" class="alert text-center"
+					role="alert" th:text="${session.message.content}">
+					<p th:text="${session.message.content}"></p>
+					<th:block th:text="${session.removeAttribute('message')}"></th:block>
+					<div
+						th:text="${@sessionUtility.removeVerificationMessageFromSession()}"></div>
+				</div>
+			</header>
+			<form novalidate="novalidate" th:action="@{/submit}" method="post"
+				th:object="${user}">
+				<div class="mb-3">
+					<label for="name_field" class="form-label text-white">Name
+					</label> <input type="text"
+						th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+						class="form-control" id="name_field" name="name"
+						th:value="${user.name}">
+					<div class="invalid-feedback"
+						th:each="e: ${#fields.errors('name')}" th:text="${e}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="email_field" class="form-label text-white ">Email</label>
+					<input type="email" class="form-control "
+						th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
+						id="email_field" name="email" th:value="${user.email}">
+					<div class="invalid-feedback"
+						th:each="e: ${#fields.errors('email')}" th:text="${e}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="password_field" class="form-label text-white">Password</label>
+					<input type="password" class="form-control"
+						th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
+						id="password_field" name="password">
+					<div class="invalid-feedback"
+						th:each="e : ${#fields.errors('password')}" th:text="${e}"></div>
+				</div>
+				<div class="mb-3">
+					<label for="about_field" class="form-label d-block text-white">About</label>
+					<textarea th:text="${user.about}" rows="3" cols=""
+						class="form-control" id="about_field" name="about"></textarea>
+
+				</div>
+				<div class="container text-white d-flex justify-content-center">
+					<div class="mb-3 form-check">
+						<input type="checkbox" class="form-check-input" id="agreement"
+							name="agreement" required> <label
+							class=" form-check-label" for="agreement"
+							style="color: white !important;">I agree to all terms and
+							conditions</label>
+
+						</div>
+				</div>
+				<div class="container text-center">
+					<button type="submit" class="btn bg-primary">Submit</button>
+					<button type="reset" class="btn btn-warning">Reset</button>
+				</div>
+			</form>
+		</div>
+	</section>
+</main>
+</body>
+</html>

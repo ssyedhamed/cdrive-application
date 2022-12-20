@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	th:replace="~{normal/user_base::Layout(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<main>
+
+		<div th:if="${contacts!=null}"
+			class="all-contacts-container col-md-8 offset-md-1 "
+			th:with="currentPaper=${currentPage}">
+
+			<h1  class="text-center">All
+				contacts</h1>
+			
+
+			<div class="card-body">
+			<div th:text="${message.getContent()}" th:if="${message!=null}" class="alert alert-success col-6 offset-3">
+			
+			</div>
+				<table class="table view-contacts">
+					<thead>
+						<tr>
+							<th scope="col">#ID</th>
+
+							<th scope="col">Name</th>
+							<th scope="col">Number</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="contact: ${contacts}">
+
+							<th th:with="cid=${contact.id}" scope="row"
+								th:text="'CDBSH_USER'+${contact.id}"></th>
+							<td><img src="" th:src="@{'/images/'+${contact.image}}"
+								alt="image here" class="contact-image" /> <a href="#"
+								th:href="@{'/user/'+${contact.id}+'/show_contact/'+${currentPaper}}"
+								th:text="${contact.name}"></a></td>
+							<td th:text="${contact.phone}"></td>
+							<td><a
+								th:href="@{'/user/'+${contact.id}+'/edit_contact/'+${currentPaper}}"
+								class="btn btn-outline-primary">Edit</a>
+
+								<button class="btn btn-success"
+									th:attr="onclick=|showPrompt('${contact.id}','${currentPaper}','delete')|"
+									>Delete</button>
+								</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--?????/////// Delete prompt ////////  -->
+				<div class="my-prompt-back" 
+				
+				>
+				<div style="top:50%;" class="my-prompt text-center col-4 border">
+					<div class="prompt-content mb-2">
+						<h4></h4>
+						<i class=""></i>
+						<span></span>
+					</div>
+					<div class="prompt-btns text-center">
+						<button 
+							
+							class="btn btn-outline-danger ">Yes</button> 
+							<a href="#"
+							th:href="@{'/user/view_contacts/'+${currentPaper}}"
+							class="btn btn-outline-success">Cancel</a>
+					</div>
+				</div>
+				</div>
+				<!--?????/////// Delete prompt END ////////  -->
+				<div class="container w-100 text-center" th:if="${totalPages>1}">
+					<nav>
+						<ul class="pagination justify-content-center">
+							<li class="page-item " th:if="${currentPage!=0}"><a
+								class="page-link"
+								th:href="@{'/user/view_contacts/'+${currentPage-1}}">Previous</a></li>
+							<li class="page-item "
+								th:each="pageNumber:${#numbers.sequence(0,totalPages-1)}"
+								th:classappend="${currentPage==pageNumber?'active':''}"><a
+								class="page-link " th:with="currentPaper=${pageNumber}"
+								th:href="@{'/user/view_contacts/'+${pageNumber}}"><span
+									th:text="${pageNumber+1}"></span></a></li>
+
+
+							<li class="page-item" th:if="${currentPage!=totalPages-1} "><a
+								class="page-link"
+								th:href="@{'/user/view_contacts/'+${currentPage+1}}">Next</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+	</main>
+</body>
+</html>

@@ -1,0 +1,254 @@
+@charset "ISO-8859-1";
+
+body {
+	background: whitesmoke;
+}
+
+.bg-primary {
+	background: #ebd5ca !important;
+}
+
+.navbar {
+	background: #d1f2eb !important;
+	outline: none !important;
+	z-index: 10;
+}
+
+.home-container {
+	position: relative;
+	top: 7.5vh;
+	height: 92.3vh;
+	width: 100%;
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+		url("../images/banner.jpg") center/cover no-repeat fixed;
+}
+
+.register-container {
+	position: relative;
+	top: 7vh;
+	min-height: 92.3vh;
+	padding: 20px 0px;
+	width: 100%;
+	background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+		url("../images/register-bg.jpg") no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.register-card {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+	padding: 30px;
+	border-radius: 10px;
+	position: relative;
+	top: 10px;
+	left: 10%;
+}
+
+.login-page {
+	background: black;
+}
+
+.login-container {
+	padding: 20px;
+	box-shadow: 0px 0px 5px black;
+	outline: none;
+	border-radius: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.dashboard-container {
+	position: relative;
+	top: 50px;
+}
+
+.sidebar-container {
+	position: fixed;
+	height: 100%;
+}
+
+/* responsive pending */
+/* @media only screen and (max-width: 768px) {
+  .sidebar {
+   	display: none;
+  }
+}
+ */
+.sidebar {
+	overflow: hidden;
+	height: 100%;
+	width: 20vw;
+	padding: 20px;
+	box-shadow: 0 0 10px;
+	transition: 0.5s ease
+}
+
+.sidebar-hide {
+	width: 0vw;
+	padding: 0;
+}
+
+.sidebar a {
+	text-decoration: none;
+	color: black;
+	display: block;
+	padding: 10px;
+	white-space: nowrap;
+}
+
+.sidebar a:hover {
+	background: #e2e2e2;
+}
+
+.toggle-btn {
+	box-shadow: 5px 0px 10px;
+	background: aqua;
+	display: inline;
+	padding: 0.5rem;
+	position: absolute;
+	top: 0;
+	right: -28px;
+	cursor: pointer;
+}
+
+.toggle-btn:hover {
+	background: #e2e2e2;
+}
+
+.content {
+	margin-left: 25%;
+	transition: 0.5s ease
+}
+
+.move-content {
+	margin-left: 4%;
+}
+
+.contact-image {
+	border-radius: 50%;
+	width:30px;
+	aspect-ratio:1/1;
+	border: 2px solid blue;
+}
+
+.contact-modal {
+	width: 100%;
+	height: 100vh;
+	background: #3a3243eb;
+	z-index: 12;
+	position: absolute;
+	top: -50px;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contact-modal-content {
+	position: relative;
+	
+	background: white;
+	border-radius: 30px;
+	padding: 10px;
+	width: 35%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.close-contact {
+	position: absolute;
+	right: 3%;
+	top:2%;
+}
+.content-body-header{
+	width:80%;
+	margin-top:30px;
+	
+ 	display: flex;
+	 justify-content: center;  
+	 flex-wrap:wrap;
+	align-items:center;
+}
+.content-header-image{
+	margin-right: 30px;
+	width:15%;
+	overflow:hidden;
+	aspect-ratio:1/1;
+	border-radius: 50%;
+	position: relative;
+	cursor: pointer;
+	
+}
+.content-header-image img{
+	border-radius: 50%;
+	border: 2px dotted blue;/*  */
+	width:100%;
+	aspect-ratio:1/1;
+}
+.image-hover{
+	width:100%;
+	height:100%;
+	
+	
+	top:100%;
+	left:0;
+	position: absolute;
+	background: rgba(0,0,0,0.5);
+	transition : 0.2s ease-in-out;
+}
+.content-header-image:hover  .image-hover{
+	top:50%;
+}
+
+
+
+.contact-table tbody, td, tfoot, th, thead, tr{
+	border-style:none !important;
+}
+.second-table  tr{
+	border-bottom: 1px dotted #c0c0c0!important;
+	border-style: solid !important;
+	
+}
+.view-contacts tr{
+	border-bottom: 1px dotted #c0c0c0!important;
+	border-style: solid !important;
+}
+.my-prompt{
+	border-radius:20px;
+	box-shadow: 0px 0px 5px;
+	position:absolute;
+	 top:100%;
+	left:60%; 
+	 transform:translate(-50%,-50%); 
+	background: #ffffff;
+	padding: 20px 0px;
+	
+}
+.my-prompt-back{
+	z-index:30;
+	
+	display: none;
+	justify-content:center;
+	align-items:center;
+	
+	width:100vw;
+	height:100vh;
+	background: rgba(0,0,0,0.3);
+	top:0vh;
+	left:0vw;
+	position: fixed;
+
+}
+.open-contact-prompt{
+	
+	padding: 20px 10px;
+	top:50%;
+	 transform:translate(-50%,-50%); 
+	left:50%;
+}

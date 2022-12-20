@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+	th:replace="~{base::Layout(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<main>
+		<section class="login-page">
+			<div class="login-container container col-md-4">
+				<div class="form-header text-center">
+					<h3>Login to access your dashboard</h3>
+
+					<div th:if="${param.error}" class="alert-danger ">
+						Wrong credentials
+					</div>
+					<div th:if="${param.logout}" class="alert-success">
+					You have been logged out successfully
+					</div>
+
+				</div>
+				<form action="#" th:action="@{/dologin}" method="post" th:object="${user}">
+					<div class="mb-3 mt-3">
+						<label for="exampleInputEmail1" class="form-label">Email
+							address</label> <input type="email" class="form-control"
+							id="exampleInputEmail1" name="username" th:value=${user.email}>
+
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label">Password</label>
+						<input type="password" class="form-control"
+							id="exampleInputPassword1" name="password">
+					</div>
+					<div class="container d-flex justify-content-around">
+						<div class="mb-3 form-check">
+							<input type="checkbox" class="form-check-input"
+								id="exampleCheck1"> <label class="form-check-label"
+								for="exampleCheck1">Remember Me</label>
+						</div>
+						<div class="register-btn">
+							<a href="/register">Register here</a>
+						</div>
+					</div>
+					<div class="text-center">
+						<button type="submit" class="btn btn-success">Submit</button>
+					</div>
+				</form>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

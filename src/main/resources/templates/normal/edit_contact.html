@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" th:replace="~{normal/user_base::Layout(~{::main})}">
+<head>
+<meta charset="ISO-8859-1">
+
+</head>
+<body>
+	<main>
+		<h1>Edit contact </h1>
+		<!-- <h2 th:replace="~{normal/open_contact::Modal
+		(0,~{normal/add_contact::Form('edit details')})}"></h2> -->
+	<!-- 	<h2 th:replace="~{normal/add_contact::Form('Edit details')}"></h2> -->
+	<h2 th:replace="~{normal/open_contact::Modal('Edit Contact Details',~{normal/add_contact::Form})}"></h2>
+	</main>
+</body>
+</html>
