@@ -17,10 +17,10 @@
 		
 			
 		promptContent.children[2].innerHTML="Once you delete, it cannot be undone. Are you sure?"
-		}
 		if(modal.children[0].children[1].classList.contains('form')){
 			
 		modal.children[0].children[1].style.display='none'
+		}
 		}
 			
 		
@@ -30,9 +30,13 @@
 	if(type==='image'){
 		promptContent.children[0].innerHTML="Do you want to update the image?"
 		promptContent.children[1].innerHTML=""
+		promptContent.children[2].innerHTML=""
+		if(modal.children[0].children[1].classList.contains('form')){
+			
+	modal.children[0].children[2].style.display='none'
+		console.log(modal.children[0].children[2])
+		}
 		
-		modal.children[0].children[0].style.display='none'
-		modal.children[0].children[2].style.display='none'
 		
 	}
 	modal.style.display="flex";

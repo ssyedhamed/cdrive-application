@@ -239,7 +239,10 @@ public class UserController {
 			}
 	}
 	@GetMapping("/{contactId}/delete_contact/{currentPage}")
-	public String deleteContact(@PathVariable String contactId, @PathVariable String currentPage, Model model) {
+	public String deleteContact(@PathVariable String contactId, @PathVariable String currentPage,
+			
+			RedirectAttributes attr,
+			Model model) {
 		if(this.contactDao.findById(Long.parseLong(contactId)).isEmpty()) {
 			return "redirect:/login";
 		}
@@ -253,7 +256,7 @@ public class UserController {
 		this.contactDao.deleteContactById(Long.parseLong(contactId));
 		//deleting image from path
 		FileUploadHelper.deleteFile(contact.getImage());
-		
+		attr.addFlashAttribute("message","Contact deleted successfully");
 		
 		Message msg= new Message("Contact deleted successfully", "success");
 		model.addAttribute("message", msg);

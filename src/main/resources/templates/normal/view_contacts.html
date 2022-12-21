@@ -8,7 +8,7 @@
 <body>
 	<main>
 
-		<div th:if="${contacts!=null}"
+		<div th:if="${contacts}"
 			class="all-contacts-container col-md-8 offset-md-1 "
 			th:with="currentPaper=${currentPage}">
 
@@ -16,8 +16,8 @@
 				contacts</h1>
 			
 
-			<div class="card-body">
-			<div th:text="${message.getContent()}" th:if="${message!=null}" class="alert alert-success col-6 offset-3">
+			<div class="card-body text-center">
+			<div th:text="${message}" th:if="${message}" class="alert alert-success col-6 offset-3">
 			
 			</div>
 				<table class="table view-contacts">
@@ -36,7 +36,7 @@
 							<th th:with="cid=${contact.id}" scope="row"
 								th:text="'CDBSH_USER'+${contact.id}"></th>
 							<td><img src="" th:src="@{'/images/'+${contact.image}}"
-								alt="image here" class="contact-image" /> <a href="#"
+								alt="image here" onerror="this.onerror=null;this.src='/images/default.png'"  class="contact-image" /> <a href="#"
 								th:href="@{'/user/'+${contact.id}+'/show_contact/'+${currentPaper}}"
 								th:text="${contact.name}"></a></td>
 							<td th:text="${contact.phone}"></td>
@@ -44,7 +44,7 @@
 								th:href="@{'/user/'+${contact.id}+'/edit_contact/'+${currentPaper}}"
 								class="btn btn-outline-primary">Edit</a>
 
-								<button class="btn btn-success"
+								<button class="btn btn-outline-danger"
 									th:attr="onclick=|showPrompt('${contact.id}','${currentPaper}','delete')|"
 									>Delete</button>
 								</td>

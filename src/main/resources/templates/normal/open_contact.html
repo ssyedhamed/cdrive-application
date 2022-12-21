@@ -71,7 +71,8 @@
 						<div class="content-header-image text-center">
 							<img
 								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','image')|"
-								src="" th:src="@{'/images/'+${contact.image}}" alt="image here" />
+								src="" th:src="@{'/images/'+${contact.image}}"  alt="image here"
+								onerror="this.onerror=null;this.src='/images/default.png'" />
 
 							<div
 								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','image')|"
@@ -133,7 +134,7 @@
 						<a
 							th:href="@{'/user/'+${contact.id}+'/edit_contact/'+${currentPage}}"
 							class="btn btn-outline-primary">Edit</a>
-						<button class="btn btn-success"
+						<button class="btn btn-outline-danger"
 							th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','delete')|">Delete</button>
 					</div>
 
