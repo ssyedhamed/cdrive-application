@@ -179,8 +179,11 @@ public class UserController {
 			@RequestParam("cid") String cid,
 			Model m,
 			RedirectAttributes redirectAttr) throws IOException {
-		if(file.isEmpty()) {
-			//m.addAttribute("message",new Message("file is corrupted", "error"));
+		
+		
+		
+		if(file.isEmpty()&&!file.getOriginalFilename().isBlank()) {
+	
 			redirectAttr.addFlashAttribute("message", "Image is corrupted. Try selecting other image");
 			
 			return "redirect:/user/"+cid+"/show_contact/"+currentPage;
