@@ -28,11 +28,14 @@
 							<input type="text" hidden="hidden" th:value="${contact.id}"
 								name="cid"> <input type="text" hidden="hidden"
 								th:value="${currentPage}" name="currentPage">
-							<div class="mb-3">
+							<div class="mb-3 ">
 
-								<label for="formFileSm" class="form-label">Select Image</label>
-								<input class="form-control form-control-sm" id="formFileSm"
-									type="file" required="required" name="file">
+								
+								
+									<input class="form-control" id="formFileSm" type="file"
+										required="required" name="file">
+									
+								
 							</div>
 							<button type="submit" class="btn btn-outline-success">Save</button>
 							<a href="#"
@@ -69,16 +72,19 @@
 					
 					<div class="content-body-header mb-2 col">
 						<div class="content-header-image text-center">
+						
 							<img
-								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','image')|"
+								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','select')|"
 								src="" th:src="@{'/images/'+${contact.image}}"  alt="image here"
 								onerror="this.onerror=null;this.src='/images/default.png'" />
 
 							<div
-								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','image')|"
+								th:attr="onclick=|showPrompt('${contact.id}','${currentPage}','select')|"
 								class="image-hover">
 								<i class="fa fa-camera text-white"></i>
 							</div>
+							
+							
 						</div>
 						
 

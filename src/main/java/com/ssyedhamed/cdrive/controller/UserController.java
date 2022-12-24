@@ -268,5 +268,13 @@ public class UserController {
 		
 		return "redirect:/user/view_contacts/"+currentPage;
 	}
+	@GetMapping("/remove-photo/{cid}/{currentPage}")
+	public String removePhoto(@PathVariable("cid")String cid, @PathVariable("currentPage") String currentPage) {
+		Contact contact = this.contactDao.findById(Long.parseLong(cid)).get();
+		FileUploadHelper.deleteFile(contact.getImage());
+		contact.setImage("default.png");
+		this.contactDao.save(contact);
+		return "redirect:/user/"+cid+"/show_contact/"+currentPage;
+	}
 	
 }
