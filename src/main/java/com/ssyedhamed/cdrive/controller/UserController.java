@@ -174,12 +174,22 @@ public class UserController {
 		return "normal/edit_contact";
 	}
 	@PostMapping("/put_contact")
-	public String updateContact(@ModelAttribute Contact contact,@RequestParam("file")MultipartFile file,
+	public String updateContact(@Valid @ModelAttribute Contact contact,
+			BindingResult result ,@RequestParam("file")MultipartFile file,
 			@RequestParam("currentPage") String currentPage,
 			@RequestParam("cid") String cid,
 			Model m,
 			RedirectAttributes redirectAttr) throws IOException {
-		
+		if(result.hasErrors()) {
+			m.addAttribute("title","Edit Contact");
+			m.addAttribute("currentPage",this.currentPage);
+			m.addAttribute("contact",contact);
+			m.addAttribute("from","edit");
+			String PROCESS_URL=	"put_contact";
+			m.addAttribute("PROCESS_URL",PROCESS_URL);
+			return "normal/edit_contact";
+//			return "redirect:/user/"+contactId+"/edit_contact/"+currentPage;
+		}
 		
 		
 		if(file.isEmpty()&&!file.getOriginalFilename().isBlank()) {
