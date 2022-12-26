@@ -1,5 +1,7 @@
 package com.ssyedhamed.cdrive.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,6 +36,7 @@ public class Contact {
 	@Column(length = 12, name = "contact number")
 	private String phone;
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 	
 	public User getUser() {

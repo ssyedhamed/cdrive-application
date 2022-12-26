@@ -1,5 +1,7 @@
 package com.ssyedhamed.cdrive.dao;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssyedhamed.cdrive.entities.Contact;
+import com.ssyedhamed.cdrive.entities.User;
 
 public interface ContactRepository extends JpaRepository<Contact, Long>{
 	@Query("select email from Contact c where c.email = :email")
@@ -22,4 +25,8 @@ public interface ContactRepository extends JpaRepository<Contact, Long>{
 	@Transactional
 	@Query("delete Contact c where c.id= :cid")
 	public void deleteContactById(@Param("cid") long cid);
+	
+	// search method
+	public List<Contact> findByNameContainingAndUser(String name,User user);
+	
 }
