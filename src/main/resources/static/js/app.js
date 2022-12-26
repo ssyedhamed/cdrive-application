@@ -75,7 +75,7 @@ showPrompt = (contactId, currentPage, type) => {
 
 			window.location.href = DELETE_URL
 		} else {
-			window.location.href = "user/view_contacts" + currentPage
+			window.location.href = "user/view_contacts/" + currentPage
 		}
 	})
 
